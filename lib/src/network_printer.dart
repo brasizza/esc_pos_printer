@@ -159,7 +159,7 @@ class NetworkPrinter {
   void qrcode(
     String text, {
     PosAlign align = PosAlign.center,
-    QRSize size = QRSize.Size4,
+    QRSize size = QRSize.size4,
     QRCorrection cor = QRCorrection.L,
   }) {
     _socket.add(_generator.qrcode(text, align: align, size: size, cor: cor));
