@@ -89,7 +89,9 @@ class MyHomePageState extends State<MyHomePage> {
       ..onError((dynamic e) {
         const snackBar = SnackBar(
             content: Text('Unexpected exception', textAlign: TextAlign.center));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
       });
   }
 
@@ -140,7 +142,7 @@ class MyHomePageState extends State<MyHomePage> {
     final Uint8List bytes = data.buffer.asUint8List();
     final Image? image = decodeImage(bytes);
     if (image != null) {
-      printer.image(image);
+      printer.imageRaster(image, imageFn: PosImageFn.graphics);
     }
     // Print image using alternative commands
     // printer.imageRaster(image);
@@ -167,7 +169,7 @@ class MyHomePageState extends State<MyHomePage> {
     final Uint8List bytes = data.buffer.asUint8List();
     final Image? image = decodeImage(bytes);
     if (image != null) {
-      printer.image(image);
+      // printer.image(image);
     }
 
     printer.text('GROCERYLY',
